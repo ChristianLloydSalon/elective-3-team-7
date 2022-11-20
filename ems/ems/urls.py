@@ -18,12 +18,19 @@ from django.urls import path, include
 from admin_side.views import *
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path('create-employee', createEmployeee, name="create_employee"),
     path('employee-list', employee_list, name="employee_list"),
     path('employee-edit/<int:pid>', edit_employee, name="edit_employee"),
     path('delete_employee/<int:pid>', delete_employee, name="delete_employee"),
     path('leave-status/<int:pid>', leave_status, name="leave_status"),
+    path('admin_login',admin_login,name='admin_login'),
+    path('admin_dashboard',admin_dashboard,name='admin_dashboard'),
+    path('logout/',Logout),
+    path('registration/',registration,),
+    path('emp_login/',emp_login),
+     path('emp_dashboard',emp_dashboard,name='emp_dashboard'),
+
 ]

@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'admin_home.html' %}
 {% block body %}
 <link rel = stylesheet href = "//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" defer>
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>
@@ -9,12 +9,14 @@
   </script>
 <div  class="container-fluid">
         <h2 style="color:red;margin-top:4%">Employee List
-            <a href="{% url 'create_employee' %}"><button class="btn btn-primary" align="right" style="float:right">Create</button></a>
+          <a href = "/registration"  class="nav-link {% if request.path == '/registration/' %} active {% endif %}"<button class="btn btn-primary" align="right" style="float:right">Create</button></a>
         </h2>
         <table class="table table-bordered" id="myTable">
   <thead>
   <tr>
-    <th>Name</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Emp_Code</th>
     <th>DOB</th>
     <th>Date of joining</th>
       <th>Department</th>
@@ -34,7 +36,9 @@
     {% for i in employee %}
   <tr>
 
-    <td>{{i.name}}</td>
+    <td>{{i.user.first_name}}</td>
+    <td>{{i.user.last_name}}</td>
+    <td>{{i.empcode}}</td>
     <td>{{i.dob}}</td>
     <td>{{i.doj}}</td>
       <td>{{i.department}}</td>
