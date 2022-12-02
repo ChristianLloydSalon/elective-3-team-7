@@ -1,6 +1,7 @@
 {% extends 'admin_home.html' %}
+{% load static %}
 {% block body %}
-
+<body style="background-image:url('{% static 'images/eml.jpg'%}'); background-repeat: no repeat; background-size: 100%">
 <script>
     function checkpass()
     {
@@ -81,5 +82,6 @@
 <script>
     alert('Something went wrong,Try Again...');
 </script>
+</body>
 {% endif %}
 {% endblock  %}
