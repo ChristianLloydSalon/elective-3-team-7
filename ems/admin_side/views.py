@@ -30,6 +30,21 @@ def admin_login(request):
         except:
             error = "yes"
     return render(request, 'admin_login.html',locals())
+
+def emp_login(request):
+    error = ""
+    if request.method == 'POST':
+        u = request.POST['emailid']
+        p = request.POST['password']
+        user = authenticate(username=u,password=p)
+        if user:
+            login(request, user)
+            error = "no"
+        else:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'emp_login2.html',d)
+
 def registration(request):
     error = ""
     if request.method == "POST":
@@ -46,20 +61,6 @@ def registration(request):
             error = "yes"
     d = {'error': error}
     return render(request, 'registration.html',d)
-
-def emp_login(request):
-    error = ""
-    if request.method == 'POST':
-        u = request.POST['emailid']
-        p = request.POST['password']
-        user = authenticate(username=u,password=p)
-        if user:
-            login(request, user)
-            error = "no"
-        else:
-            error = "yes"
-    d = {'error': error}
-    return render(request, 'emp_login.html',d)
 
 def emp_dashboard(request):
     if not request.user.is_authenticated:

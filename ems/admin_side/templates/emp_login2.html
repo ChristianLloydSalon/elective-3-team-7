@@ -1,7 +1,7 @@
 {% load static %}
 
 <head>
-<title> Admin Login</title>
+<title> Employee Login</title>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -31,7 +31,7 @@
                   <i class="fa fa-user fa-2x"></i>
                 </span>
               </div>
-              <input type="text" name="username" class="form-control py-4" placeholder="UserName">
+              <input type="email" name="emailid" placeholder="Email ID"  class="form-control py-4">
           </div>
 
           <div class="input-group mb-3">
@@ -40,7 +40,7 @@
                   <i class="fa fa-lock fa-2x"></i>
                 </span>
               </div>
-              <input type="password" name="pwd" class="form-control py-4" placeholder="Password">
+              <input type="password" name="password" placeholder="Password"  class="form-control py-4">
           </div>
           <input type="submit" value="Login" class="btn btn-success px-5">
           <a href="/" class="float-right mt-2 text-white">Go Back To Home</a>
@@ -56,7 +56,7 @@
 {% if error == "no" %}
 <script>
     alert('logged in successfully');
-    window.location=("/admin_dashboard");
+    window.location=("/emp_dashboard");
 </script>
 {% endif %}
 {% if error == "yes" %}
