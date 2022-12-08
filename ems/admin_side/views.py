@@ -115,6 +115,70 @@ def edit_employee(request, pid):
     d = {'error': error,'emp_data': emp_data}        
     return render(request, 'edit_employeee.html', d)
 
+def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    error = ""
+    user = request.user
+    emp_data = Employee.objects.get(user=user)
+    if request.method == "POST":
+        fn = request.POST['firstname']
+        ln = request.POST['lastname']
+        ec = request.POST['empcode']
+        dob = request.POST['dob']
+        doj = request.POST['doj']
+        address = request.POST['address']
+        city = request.POST['city']
+        region = request.POST['region']
+        zipcode = request.POST['zipcode']
+        country = request.POST['country']
+        department = request.POST['department']
+        position = request.POST['position']
+
+        emp_data.user.first_name = fn
+        emp_data.user.last_name = ln
+        emp_data.empcode = ec
+        emp_data.dob = dob
+        emp_data.doj = doj
+        emp_data.address = address
+        emp_data.city = city
+        emp_data.region = region
+        emp_data.zipcode = zipcode
+        emp_data.country = country
+        emp_data.department = department
+        emp_data.position = position
+        
+        if doj:
+            emp_data.doj = doj
+        try:
+            emp_data.save()
+            emp_data.user.save()
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error,'emp_data': emp_data}    
+    return render(request, 'emp_profile.html',d)
+
+def change_password(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    error = ""
+    if request.method=="POST":
+        o = request.POST['currentpassword']
+        n = request.POST['newpassword']
+        try:
+            u = User.objects.get(id=request.user.id)
+            if u.check_password(o):
+                u.set_password(n)
+                u.save()
+                error = "no"
+            else:
+                error = "not"
+        except:
+            error = "yes"
+
+    return render(request,'change_password.html',locals())
+
 def delete_employee(request, pid):
     data = Employee.objects.get(id=pid)
     data.delete()
