@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include 
 from admin_side.views import *
+from other_features.views import *
 
 
 
@@ -34,5 +35,11 @@ urlpatterns = [
     path('emp_dashboard',emp_dashboard,name='emp_dashboard'),
     path('emp_profile/',profile, ),
     path('change_password',change_password,name='change_password'),
+    path('user-attendance/',user_attendance, name='user_attendance'),
+    path('admin-attendance/', admin_attendance, name='admin_attendance'),
+    path('compensation_request/', compensation_request, name='compensation_request'),
+    path('decline_compensation/<int:pk>/', decline_compensation, name='decline_compensation'),
+    path('approve_compensation/<int:pk>/', approve_compensation, name='approve_compensation'),
+     
 
 ]

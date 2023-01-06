@@ -3,6 +3,8 @@ from turtle import pos
 from .models import *
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages 
+from other_features.models import Attendance
+import datetime
 
 def home(request):
     return render(request, 'index.html')
@@ -40,6 +42,16 @@ def emp_login(request):
         if user:
             login(request, user)
             error = "no"
+
+            # Update attendance record for current user
+            today = datetime.date.today()
+            try:
+                attendance_record = Attendance.objects.get(date=today, user=request.user)
+            except Attendance.DoesNotExist:
+                attendance_record = None
+            if attendance_record is None:
+                attendance_record = Attendance(date=today, user=request.user, present=True)
+                attendance_record.save()
         else:
             error = "yes"
     d = {'error': error}
