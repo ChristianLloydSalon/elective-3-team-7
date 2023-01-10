@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponseRedirect
 from .models import Attendance
+import datetime
 # Create your views here.
 
 def user_attendance(request):
@@ -10,17 +11,30 @@ def user_attendance(request):
     if request.method == 'POST':
         # Get the form data
         date = request.POST['date']
-        reason = request.POST['reason']
+        present = request.POST['present']
         # Update the attendance record
-        attendance = Attendance.objects.get(user=request.user, date=date)
-        attendance.reason = reason
-        attendance.save()
-        # Redirect to the user_attendance view
-        return redirect('user_attendance')
+        # update_attendance(date, present, request)  # remove this line
+
     context = {'attendance_records': attendance_records}
     # Render the template with the attendance records
-    return render(request, 'user_attendance.html', context )
+    return render(request, 'user_attendance.html', context)
 
+def update_attendance(request):
+    if request.method == 'POST':
+        date = request.POST['date']
+        present = request.POST['present'] == 'True'  # True if user selects "Yes", False otherwise
+        reason = request.POST['reason']
+        # Update the attendance record for the selected date
+        attendance, created = Attendance.objects.get_or_create(
+            user=request.user, date=date
+        )
+        attendance.present = present
+        attendance.reason = reason
+        attendance.save()
+
+    return redirect('user_attendance')
+
+    
 def compensation_request(request):
     # Check if the form has been submitted
     if request.method == 'POST':

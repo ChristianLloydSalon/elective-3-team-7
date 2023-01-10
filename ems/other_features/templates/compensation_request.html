@@ -1,4 +1,18 @@
 <!-- Display the attendance records for the current user -->
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Present</th>
+        <th>Reason</th>
+    </tr>
+    {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.date }}</td>
+            <td>{{ record.present }}</td>
+            <td>{{ record.reason }}</td>
+        </tr>
+    {% endfor %}
+</table>
 {% for attendance in attendance_records %}
     <div class="attendance-record">
         <div class="date">{{ attendance.date }}</div>
@@ -10,9 +24,8 @@
                 <div class="reason">Reason: {{ attendance.reason }}</div>
             {% else %}
                 <!-- Display the compensation request form -->
-                <form method="post" action="{% url 'compensation_request' %}">
+                <form method="post" action="{% url 'compensation_request' pk=attendance.pk %}">
                     {% csrf_token %}
-                    <input type="hidden" name="date" value="{{ attendance.date }}">
                     <textarea name="reason" placeholder="Enter reason for absence"></textarea>
                     <input type="submit" value="Request Compensation">
                 </form>

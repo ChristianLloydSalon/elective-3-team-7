@@ -38,7 +38,7 @@ def emp_login(request):
     if request.method == 'POST':
         u = request.POST['emailid']
         p = request.POST['password']
-        user = authenticate(username=u,password=p)
+        user = authenticate(username=u, password=p)
         if user:
             login(request, user)
             error = "no"
@@ -55,7 +55,7 @@ def emp_login(request):
         else:
             error = "yes"
     d = {'error': error}
-    return render(request, 'emp_login2.html',d)
+    return render(request, 'emp_login2.html', d)
 
 def registration(request):
     error = ""

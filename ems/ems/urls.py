@@ -40,6 +40,7 @@ urlpatterns = [
     path('compensation_request/', compensation_request, name='compensation_request'),
     path('decline_compensation/<int:pk>/', decline_compensation, name='decline_compensation'),
     path('approve_compensation/<int:pk>/', approve_compensation, name='approve_compensation'),
+    path('update_attendance/', update_attendance, name='update_attendance'),
      
 
 ]
