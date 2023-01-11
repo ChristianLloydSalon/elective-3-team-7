@@ -1,0 +1,42 @@
+{% extends 'emp_home.html' %}
+{% load static %}
+{% block body %}
+<style>
+  /* Define table styles */
+  table {
+      border-collapse: collapse;
+  }
+  th, td {
+      border: 1px solid black;
+      padding: 5px;
+  }
+  th {
+      background-color: lightgray;
+  }
+
+  /* Define header styles */
+  h1 {
+      font-size: 20px;
+      color: blue;
+  }
+  h2 {
+      font-size: 18px;
+      color: green;
+  }
+</style>
+<center>
+<h1>Welcome, {{ user.username }}</h1>
+<p>Your current salary is: {{ current_salary }}</p>
+<form method="post" action="{% url 'user_salary' %}">
+  {% csrf_token %}
+  <input type="submit" value="Withdraw Salary">
+</form>
+<div>
+    {% if message %}
+    <div class="alert">
+      {{ message }}
+    </div>
+    {% endif %}
+  </div>
+</center>
+{% endblock %}

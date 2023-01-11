@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include 
 from admin_side.views import *
 from other_features.views import *
+from other_features.views import UserSalaryView, AdminSalaryView, UpdateBaseSalaryView
 
 
 
@@ -41,6 +42,8 @@ urlpatterns = [
     path('decline_compensation/<int:pk>/', decline_compensation, name='decline_compensation'),
     path('approve_compensation/<int:pk>/', approve_compensation, name='approve_compensation'),
     path('update_attendance/', update_attendance, name='update_attendance'),
-     
+    path('user_salary/', UserSalaryView.as_view(), name='user_salary'),
+    path('admin_salary/', AdminSalaryView.as_view(), name='admin_salary'),
+    path('update_base_salary/<int:pk>', UpdateBaseSalaryView.as_view(), name='update_base_salary'),
 
 ]

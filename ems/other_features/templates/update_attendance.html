@@ -4,3 +4,10 @@
     <input type="hidden" name="present" value="{{ attendance.present }}">
     <input type="submit" value="Update Attendance">
 </form>
+<div>
+    {% if message %}
+    <div class="alert">
+      {{ message }}
+    </div>
+    {% endif %}
+  </div>
