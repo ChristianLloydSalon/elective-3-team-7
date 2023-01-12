@@ -1,6 +1,7 @@
 {% extends 'admin_home.html' %}
 {% load static %}
 {% block body %}
+<body style="background-image:url('{% static 'images/eml.jpg'%}'); background-repeat: no repeat; background-size: 100%">
 <style>
     /* Define table styles */
     table {
@@ -9,15 +10,21 @@
     th, td {
         border: 1px solid black;
         padding: 5px;
+        color:white;
+        font-size:20px;
     }
     th {
         background-color: lightgray;
+        text-align:center;
+        font-size: 20px;
+        color:black;
     }
 
     /* Define header styles */
     h1 {
-        font-size: 20px;
-        color: blue;
+        padding:30px;
+        font-size: 50px;
+        color: white;
     }
     h2 {
         font-size: 18px;
@@ -47,12 +54,12 @@
             <td>{{ salary.withdrawn }}</td>
             <td>
                 
-                <a href="{% url 'update_base_salary' pk=salary.pk %}">Edit</a>
+                <a style="color:white; background-color:green" href="{% url 'update_base_salary' pk=salary.pk %}">Edit</a>
                 
                 <form method="post" action="{% url 'admin_salary' %}">
                     {% csrf_token %}
                     <input type="hidden" name="salary_id" value="{{ salary.id }}">
-                    <input type="submit" value="Reset">
+                    <input style=" background-color:red; color:white" type="submit" value="Reset">
                 </form>
             </td>
             
@@ -69,4 +76,5 @@
     {% endfor %}
     {% endif %}
 </center>
+</body>
 {% endblock %}

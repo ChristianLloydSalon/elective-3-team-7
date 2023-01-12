@@ -7,7 +7,7 @@
   font-family: math;
     font-size: 70px;
     color: white;
-    margin: 180px;
+    padding-top: 50px;
 }
 .glow {
   font-size: 80px;
@@ -22,14 +22,17 @@ hr.rounded {
   border-top: 8px solid lightblue;
   border-radius: 5px;
 }
+h1{
+  color:black;
+}
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <br>
 <body style="background-image:url('{% static 'images/add.jpg'%}'); background-repeat: no repeat; background-size: 100%">
 <center>
-  <div class="container" style="margin-top:10%;height:150px;width:80%">
-    <div class="row" style="height:90%">
-        <div class="col-md-6" style="border:1px solid black">
+  <div class="container" style="height:150px;width:80%; " >
+    <div  class="row" style="height:90%">
+        <div class="col-md-6" style="border:1px solid black; background-color:white; margin-left:auto;margin-right:auto;">
             <a href="#"><h1>Total Employee</h1>
             <h2 style="color:black">{{total_employee}}</h2>
 			<hr class="rounded"></a>
@@ -37,21 +40,21 @@ hr.rounded {
         <div class="d-flex">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/employee-list">See Employee List</a>
+            <a style="font-size:30px; color:white; text-decoration: underline" class="nav-link active" aria-current="page" href="/employee-list">See Employee List</a>
           </li>  
         </ul>
       </div>
       <div class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/admin-attendance">Employee Attendance</a>
+          <a style="font-size:30px; color:white; text-decoration: underline" class="nav-link active" aria-current="page" href="/admin-attendance">Employee Attendance</a>
         </li>  
       </ul>
     </div>
     <div class="d-flex">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/admin_salary">Employee Salary</a>
+        <a style="font-size:30px; color:white; text-decoration: underline" class="nav-link active" aria-current="page" href="/admin_salary">Employee Salary</a>
       </li>  
     </ul>
   </div>
