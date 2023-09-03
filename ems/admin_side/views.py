@@ -194,6 +194,7 @@ def change_password(request):
 def delete_employee(request, pid):
     data = Employee.objects.get(id=pid)
     data.delete()
+    
     messages.success(request, "Employee Deleted successfully")
     return redirect('employee_list')
 
